@@ -1,0 +1,29 @@
+<h2>users</h2>
+<button [disabled]="!disableadd" class="btn btn-light mb-3 btn-block">
+  Add new user
+</button>
+<ul class="list-unstyled" *ngIf="loaded && users?.length > 0">
+  <li class="card card-body mb-2 text-center" *ngFor="let user of users">
+    <div class="row">
+      <div class="col-sm-5">
+        <img class="img-fluid" [src]="user.image" alt="" />
+      </div>
+      <div class="col-sm-7">
+        <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+        <ul class="list-group" *ngIf="showuser && user.age && user.address">
+          <li class="list-group-item mb-2">Age : {{ user.age }}</li>
+          <li class="list-group-item">
+            Adress : {{ user.address.city }} {{ user.address.street }}
+            {{ user.address.state }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<!-- <ng-template #nouser> <h4>No user found</h4> </ng-template> -->
+
+<h4 *ngIf="users?.length == 0">User not found</h4>
+
+<h4 *ngIf="!loaded">Loading ....</h4>
